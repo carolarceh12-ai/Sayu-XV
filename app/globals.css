@@ -295,3 +295,349 @@ h1 strong {
     height: 185px;
   }
 }
+.contenedor-foto{
+  display:flex;
+  justify-content:center;
+  margin-bottom:35px;
+}
+
+.foto-marco{
+  position:relative;
+  width:240px;
+  height:240px;
+  border-radius:50%;
+  overflow:hidden;
+  border:6px solid rgba(255,255,255,.55);
+
+  box-shadow:
+      0 0 30px rgba(255,255,255,.25),
+      0 0 80px rgba(216,195,165,.30);
+}
+
+/* =========================
+   HISTORIA DE SAYUMI
+========================= */
+
+.historia {
+  position: relative;
+  padding: 90px 24px;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(216, 191, 194, 0.22),
+      transparent 30%
+    ),
+    linear-gradient(180deg, #f8f3ee 0%, #eee7ec 100%);
+  color: #26304d;
+  text-align: center;
+}
+
+.historia > .etiqueta {
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.28rem;
+  font-size: 0.75rem;
+  color: #5f6680;
+}
+
+.historia > h3 {
+  margin-bottom: 55px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.7rem, 7vw, 5rem);
+  font-weight: 500;
+  line-height: 1;
+  color: #25355b;
+}
+
+.linea-tiempo {
+  position: relative;
+  width: min(100%, 950px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+}
+
+.linea-tiempo::before {
+  content: "";
+  position: absolute;
+  top: 30px;
+  bottom: 30px;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(92, 101, 137, 0.4),
+    transparent
+  );
+}
+
+.momento {
+  position: relative;
+  z-index: 1;
+  width: calc(50% - 35px);
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  align-items: center;
+  gap: 24px;
+  padding: 22px;
+  border: 1px solid rgba(104, 104, 130, 0.16);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 18px 45px rgba(45, 48, 76, 0.12);
+  backdrop-filter: blur(10px);
+  text-align: left;
+}
+
+.momento:nth-child(odd) {
+  align-self: flex-start;
+}
+
+.momento:nth-child(even) {
+  align-self: flex-end;
+}
+
+.momento::after {
+  content: "✦";
+  position: absolute;
+  top: 50%;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: #33466f;
+  color: #f4ded7;
+  box-shadow: 0 0 0 8px rgba(51, 70, 111, 0.1);
+}
+
+.momento:nth-child(odd)::after {
+  right: -53px;
+}
+
+.momento:nth-child(even)::after {
+  left: -53px;
+}
+
+.foto-historia {
+  position: relative;
+  width: 190px;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 22px;
+  border: 4px solid rgba(255, 255, 255, 0.95);
+  background: #ddd;
+  box-shadow: 0 10px 28px rgba(32, 40, 73, 0.18);
+}
+
+.foto-historia img {
+  transition: transform 0.5s ease;
+}
+
+.momento:hover .foto-historia img {
+  transform: scale(1.04);
+}
+
+.texto-momento span {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: #7b6b89;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16rem;
+  text-transform: uppercase;
+}
+
+.texto-momento h4 {
+  margin-bottom: 10px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.8rem;
+  line-height: 1;
+  color: #26385f;
+}
+
+.texto-momento p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #525a70;
+}
+
+.hora-evento {
+  margin: 12px 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2rem;
+}
+
+.boton-maps {
+  display: inline-flex;
+  margin-top: 26px;
+  padding: 15px 25px;
+  border-radius: 999px;
+  background: #263d69;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+.boton-maps:hover {
+  transform: translateY(-3px);
+  background: #172747;
+}
+
+/* TABLET Y CELULAR */
+
+@media (max-width: 900px) {
+  .linea-tiempo::before {
+    left: 22px;
+  }
+
+  .momento,
+  .momento:nth-child(odd),
+  .momento:nth-child(even) {
+    width: calc(100% - 48px);
+    align-self: flex-end;
+  }
+
+  .momento:nth-child(odd)::after,
+  .momento:nth-child(even)::after {
+    left: -43px;
+    right: auto;
+  }
+}
+
+@media (max-width: 650px) {
+  .historia {
+    padding: 70px 18px;
+  }
+
+  .linea-tiempo {
+    gap: 28px;
+  }
+
+  .linea-tiempo::before {
+    display: none;
+  }
+
+  .momento,
+  .momento:nth-child(odd),
+  .momento:nth-child(even) {
+    width: 100%;
+    grid-template-columns: 1fr;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .momento::after {
+    display: none;
+  }
+
+  .foto-historia {
+    width: 100%;
+    height: 360px;
+    margin: 0 auto;
+  }
+
+  .texto-momento {
+    padding: 5px 8px 10px;
+  }
+
+  .texto-momento h4 {
+    font-size: 2rem;
+  }
+}
+/* =========================
+   CUENTA REGRESIVA
+========================= */
+
+.cuenta-regresiva {
+  width: min(100%, 760px);
+  margin: 38px auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.unidad-tiempo {
+  padding: 22px 12px;
+  border: 1px solid rgba(55, 70, 108, 0.15);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 12px 30px rgba(35, 44, 75, 0.09);
+}
+
+.unidad-tiempo strong {
+  display: block;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.3rem, 6vw, 4rem);
+  line-height: 1;
+  color: #263d69;
+}
+
+.unidad-tiempo span {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.13rem;
+  text-transform: uppercase;
+  color: #747b91;
+}
+
+/* =========================
+   UBICACIÓN
+========================= */
+
+.tarjeta-ubicacion {
+  width: min(100%, 620px);
+  margin: 30px auto 0;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  border: 1px solid rgba(55, 70, 108, 0.15);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 15px 35px rgba(35, 44, 75, 0.1);
+}
+
+.icono-ubicacion {
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #263d69;
+  color: white;
+  font-size: 2rem;
+}
+
+.tarjeta-ubicacion h4 {
+  margin-bottom: 5px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.7rem;
+  color: #263d69;
+}
+
+.tarjeta-ubicacion p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .cuenta-regresiva {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tarjeta-ubicacion {
+    flex-direction: column;
+    text-align: center;
+  }
+}
