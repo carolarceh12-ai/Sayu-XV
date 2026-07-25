@@ -641,3 +641,696 @@ h1 strong {
     text-align: center;
   }
 }
+/* =========================
+   CÓDIGO DE VESTIMENTA
+========================= */
+
+.dresscode {
+  position: relative;
+  padding: 95px 24px;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 85% 15%,
+      rgba(185, 174, 208, 0.2),
+      transparent 30%
+    ),
+    linear-gradient(180deg, #f8f3ee, #eee7ec);
+  color: #26304d;
+  text-align: center;
+}
+
+.dresscode > .etiqueta {
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.28rem;
+  font-size: 0.75rem;
+  color: #747b91;
+}
+
+.dresscode > h3 {
+  margin: 12px 0 18px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 500;
+  line-height: 1;
+  color: #263d69;
+}
+
+.introduccion-dresscode {
+  max-width: 680px;
+  margin: 0 auto 48px;
+  line-height: 1.7;
+  color: #5c6377;
+}
+
+.bloques-paleta {
+  width: min(100%, 1050px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.grupo-paleta {
+  padding: 32px 25px;
+  border: 1px solid rgba(50, 62, 95, 0.13);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 18px 50px rgba(44, 47, 76, 0.1);
+  backdrop-filter: blur(8px);
+}
+
+.grupo-distintivo {
+  display: inline-block;
+  margin-bottom: 15px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: #263d69;
+  color: white;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12rem;
+  text-transform: uppercase;
+}
+
+.grupo-paleta h4 {
+  margin-bottom: 10px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #263d69;
+}
+
+.grupo-paleta > p {
+  max-width: 530px;
+  margin: 0 auto 26px;
+  color: #646b7e;
+  line-height: 1.6;
+}
+
+.colores {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.color-item {
+  min-height: 76px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid rgba(48, 60, 91, 0.1);
+  border-radius: 17px;
+  background: rgba(250, 248, 246, 0.88);
+  text-align: left;
+}
+
+.muestra-color {
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+  display: block;
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 1px rgba(41, 49, 74, 0.12),
+    0 5px 12px rgba(41, 49, 74, 0.12);
+}
+
+.nombre-color {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #39435f;
+}
+
+.nota-vestimenta {
+  width: min(100%, 820px);
+  margin: 35px auto 0;
+  padding: 20px 24px;
+  border-left: 4px solid #9e91a8;
+  border-radius: 8px 18px 18px 8px;
+  background: rgba(255, 255, 255, 0.68);
+  text-align: left;
+}
+
+.nota-vestimenta strong {
+  color: #263d69;
+}
+
+.nota-vestimenta p {
+  display: inline;
+  margin: 0;
+  line-height: 1.6;
+  color: #5b6275;
+}
+
+@media (max-width: 800px) {
+  .bloques-paleta {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .dresscode {
+    padding: 75px 16px;
+  }
+
+  .grupo-paleta {
+    padding: 25px 16px;
+  }
+
+  .colores {
+    grid-template-columns: 1fr;
+  }
+
+  .nota-vestimenta {
+    text-align: center;
+  }
+}
+/* =========================================================
+   CIERRE FINAL DE LA INVITACIÓN
+   Mantiene la estética original
+========================================================= */
+
+.despedida {
+  position: relative;
+  display: flex;
+  min-height: 100vh;
+  padding: 7rem 1.5rem;
+  align-items: center;
+  background:
+    radial-gradient(
+      circle at 50% 25%,
+      rgba(196, 177, 198, 0.18),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #1c2949 0%,
+      #26385f 55%,
+      #63566d 100%
+    );
+  color: #f8f3ef;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+}
+
+.despedida::before,
+.despedida::after {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.45);
+  content: "✦";
+  font-size: 1.2rem;
+}
+
+.despedida::before {
+  top: 14%;
+  left: 10%;
+}
+
+.despedida::after {
+  right: 11%;
+  bottom: 16%;
+}
+
+.despedida .etiqueta {
+  margin-bottom: 1.2rem;
+  color: #ded4db;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+}
+
+.despedida h3 {
+  max-width: 850px;
+  margin: 0 auto 2.2rem;
+  color: #f8f2ed;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.5rem, 5vw, 4.3rem);
+  font-weight: 400;
+  line-height: 1.08;
+}
+
+.texto-despedida {
+  width: min(100%, 680px);
+  margin: 0 auto 2.2rem;
+}
+
+.texto-despedida p {
+  margin-bottom: 0.8rem;
+  color: rgba(255, 255, 255, 0.82);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.frase-final {
+  margin-bottom: 2.5rem;
+  color: #f1ced2;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.acciones-despedida {
+  display: flex;
+  margin-bottom: 3.2rem;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.boton-confirmar,
+.boton-maps-secundario {
+  display: inline-flex;
+  min-height: 54px;
+  padding: 0.95rem 1.8rem;
+  align-items: center;
+  border-radius: 999px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  justify-content: center;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.boton-confirmar {
+  background: #223b70;
+  box-shadow: 0 14px 30px rgba(10, 24, 54, 0.3);
+  color: #ffffff;
+}
+
+.boton-confirmar:hover {
+  background: #182f60;
+  transform: translateY(-3px);
+}
+
+.boton-maps-secundario {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  color: #ffffff;
+}
+
+.boton-maps-secundario:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-3px);
+}
+
+.firma-despedida {
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.78);
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.firma-despedida span {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.firma-despedida strong {
+  color: #f1ced2;
+  font-family: var(--font-great-vibes), "Great Vibes", cursive;
+  font-size: clamp(3.2rem, 7vw, 5rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+@media (max-width: 650px) {
+  .despedida {
+    padding: 5rem 1.25rem;
+  }
+
+  .despedida h3 {
+    max-width: 900px;
+    margin: 0 auto 2rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.5rem, 5vw, 4.2rem);
+    font-weight: 400;
+    line-height: 1.08;
+  }
+
+  .texto-despedida p {
+    font-size: 0.98rem;
+  }
+
+  .acciones-despedida {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .boton-confirmar,
+  .boton-maps-secundario {
+    width: min(100%, 340px);
+  }
+}
+/* ==========================================
+   ANIMACIÓN DE APERTURA DEL SOBRE
+========================================== */
+
+.portada {
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease,
+    filter 0.7s ease;
+}
+
+.portada-abriendo {
+  opacity: 0;
+  transform: scale(1.035);
+  filter: blur(3px);
+  pointer-events: none;
+}
+
+.sobre-abriendo {
+  animation: abrir-sobre 0.75s ease forwards;
+  pointer-events: none;
+}
+
+.sobre-abriendo .solapa {
+  animation: levantar-solapa 0.65s ease forwards;
+  transform-origin: top center;
+}
+
+.sobre-abriendo .sello {
+  animation: brillo-sello 0.65s ease forwards;
+}
+
+@keyframes abrir-sobre {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+
+  35% {
+    transform: translateY(-8px) scale(1.04);
+    box-shadow:
+      0 32px 90px rgba(0, 0, 0, 0.42),
+      0 0 45px rgba(243, 217, 208, 0.45);
+  }
+
+  100% {
+    transform: translateY(-15px) scale(1.1);
+    opacity: 0;
+  }
+}
+
+@keyframes levantar-solapa {
+  0% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: rotateX(175deg);
+    opacity: 0;
+  }
+}
+
+@keyframes brillo-sello {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+
+  50% {
+    transform: scale(1.16);
+    filter: brightness(1.45);
+    box-shadow:
+      0 8px 20px rgba(0, 0, 0, 0.28),
+      0 0 35px rgba(216, 195, 165, 0.75);
+  }
+
+  100% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portada,
+  .sobre-abriendo,
+  .sobre-abriendo .solapa,
+  .sobre-abriendo .sello {
+    animation: none;
+    transition: none;
+  }
+}
+/* ==========================================
+   ANIMACIONES AL HACER SCROLL
+========================================== */
+
+.revelar {
+  opacity: 0;
+  transform: translateY(34px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+  will-change: opacity, transform;
+}
+
+.revelar.revelado {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .revelar,
+  .revelar.revelado {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+/* Evita contenido invisible en celular */
+@media (max-width: 700px) {
+  .revelar,
+  .revelar.revelado {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+/* ==========================================
+   BOTÓN DE MÚSICA
+========================================== */
+
+.boton-musica {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 100;
+  min-height: 44px;
+  padding: 10px 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 999px;
+  background: rgba(22, 34, 70, 0.55);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 25px rgba(8, 15, 38, 0.22);
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.boton-musica:hover {
+  transform: translateY(-2px);
+  background: rgba(35, 55, 103, 0.78);
+  box-shadow: 0 14px 30px rgba(8, 15, 38, 0.3);
+}
+
+.boton-musica.musica-activa {
+  background: rgba(216, 191, 194, 0.92);
+  color: #26304d;
+}
+
+.boton-musica span:first-child {
+  min-width: 16px;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+@media (max-width: 600px) {
+  .boton-musica {
+    top: 12px;
+    right: 12px;
+    min-width: 44px;
+    padding: 10px 12px;
+  }
+
+  .boton-musica span:last-child {
+    display: none;
+  }
+}
+/* ==========================================
+   SECCIÓN DE REGALOS
+========================================== */
+
+.regalos {
+  width: 100%;
+  padding: 90px 24px;
+  text-align: center;
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(255, 255, 255, 0.08),
+      transparent 45%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(78, 65, 91, 0.96),
+      rgba(38, 50, 86, 0.98)
+    );
+}
+.regalos {
+  width: 100%;
+  padding: 90px 24px;
+  text-align: center;
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(255, 255, 255, 0.08),
+      transparent 45%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(78, 65, 91, 0.96),
+      rgba(38, 50, 86, 0.98)
+    );
+}
+
+/* PÉGALO AQUÍ */
+
+.regalos > .etiqueta {
+  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.28rem;
+  text-transform: uppercase;
+}
+
+.regalos h3 {
+  max-width: 720px;
+  margin: 10px auto 24px;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.08;
+  color: #ffffff;
+}
+.regalos h3 {
+  max-width: 720px;
+  margin: 10px auto 24px;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.08;
+  color: #ffffff;
+}
+
+.texto-regalos {
+  max-width: 700px;
+  margin: 0 auto 14px;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.tarjeta-regalo {
+  width: min(100%, 420px);
+  margin: 40px auto 0;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 24px 55px rgba(7, 14, 35, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(14px);
+}
+
+.qr-imagen {
+  width: min(100%, 310px);
+  margin: 0 auto 22px;
+  padding: 14px;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 16px 35px rgba(15, 22, 52, 0.25);
+}
+
+.qr-imagen img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+}
+
+.tarjeta-regalo h4 {
+  margin: 0 0 8px;
+  color: #ffffff;
+  font-size: 1.55rem;
+  letter-spacing: 0.02em;
+}
+
+.titular-regalo {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.98rem;
+}
+
+.titular-regalo strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* ==========================================
+   REGALOS - MÓVIL
+========================================== */
+
+@media (max-width: 700px) {
+  .regalos {
+    padding: 70px 20px;
+  }
+
+  .regalos h3 {
+    font-size: 2rem;
+  }
+
+  .texto-regalos {
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+
+  .tarjeta-regalo {
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .qr-imagen {
+    width: 100%;
+    max-width: 290px;
+    padding: 10px;
+    border-radius: 18px;
+  }
+}

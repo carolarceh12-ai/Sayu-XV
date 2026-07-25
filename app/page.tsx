@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type TiempoRestante = {
   dias: number;
@@ -80,10 +80,10 @@ const recuerdos = [
     posicion: "center center",
   },
   {
-    edad: "2026",
-    titulo: "Comienza la celebración",
+    edad: "21 de agosto de 2026",
+    titulo: "Comienza un nuevo capítulo",
     texto:
-      "Acompáñanos a celebrar sus quince años y a convertir esta noche en un recuerdo inolvidable.",
+      "Después de quince años de aprendizajes, sueños y recuerdos, llega el momento de celebrar una nueva etapa. Nos llenaría de alegría que formes parte de este capítulo tan especial.",
     imagen: "/images/sayu-fiesta.jpeg",
     alt: "Sayumi acompañada en una celebración",
     posicion: "center center",
@@ -105,24 +105,77 @@ function calcularTiempoRestante(): TiempoRestante {
 
 export default function Home() {
   const [invitacionAbierta, setInvitacionAbierta] = useState(false);
-
+  const [abriendoSobre, setAbriendoSobre] = useState(false);
+  const [musicaActiva, setMusicaActiva] = useState(false);
   const [tiempo, setTiempo] = useState<TiempoRestante>({
     dias: 0,
     horas: 0,
     minutos: 0,
     segundos: 0,
   });
-
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   useEffect(() => {
     setTiempo(calcularTiempoRestante());
-
+  
     const intervalo = window.setInterval(() => {
       setTiempo(calcularTiempoRestante());
     }, 1000);
-
+  
     return () => window.clearInterval(intervalo);
   }, []);
+  
+  useEffect(() => {
+    if (!invitacionAbierta) return;
+  
+    const elementos = document.querySelectorAll<HTMLElement>(".revelar");
+  
+    const observador = new IntersectionObserver(
+      (entradas) => {
+        entradas.forEach((entrada) => {
+          if (entrada.isIntersecting) {
+            entrada.target.classList.add("revelado");
+            observador.unobserve(entrada.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -60px 0px",
+      }
+    );
+  
+    elementos.forEach((elemento) => observador.observe(elemento));
+  
+    return () => observador.disconnect();
 
+  }, [invitacionAbierta]);
+  async function alternarMusica() {
+    const audio = audioRef.current;
+  
+    if (!audio) return;
+  
+    try {
+      if (audio.paused) {
+        await audio.play();
+        setMusicaActiva(true);
+      } else {
+        audio.pause();
+        setMusicaActiva(false);
+      }
+    } catch (error) {
+      console.error("No se pudo reproducir la música:", error);
+    }
+  }
+  function abrirInvitacion() {
+    if (abriendoSobre) return;
+  
+    setAbriendoSobre(true);
+  
+    window.setTimeout(() => {
+      setInvitacionAbierta(true);
+    }, 750);
+  }
+  
   function irAHistoria() {
     document.getElementById("historia")?.scrollIntoView({
       behavior: "smooth",
@@ -132,6 +185,12 @@ export default function Home() {
 
   return (
     <main className="pagina">
+      <audio
+  ref={audioRef}
+  src="/Musica/cancion.mp3"
+  loop
+  preload="metadata"
+/>
       <div className="destellos" aria-hidden="true">
         <span>✦</span>
         <span>✧</span>
@@ -139,10 +198,33 @@ export default function Home() {
         <span>✧</span>
         <span>✦</span>
       </div>
+      {invitacionAbierta && (
+  <button
+    type="button"
+    className={`boton-musica ${
+      musicaActiva ? "musica-activa" : ""
+    }`}
+    onClick={alternarMusica}
+    aria-label={
+      musicaActiva ? "Pausar música" : "Reproducir música"
+    }
+  >
+    <span aria-hidden="true">
+      {musicaActiva ? "❚❚" : "♪"}
+    </span>
 
+    <span>
+      {musicaActiva ? "Pausar" : "Música"}
+    </span>
+  </button>
+)}
       {!invitacionAbierta ? (
-        <section className="portada">
-          <p className="texto-superior">Estás invitado a un sueño</p>
+        <section
+        className={`portada ${abriendoSobre ? "portada-abriendo" : ""}`}
+        >
+          <p className="texto-superior">
+            Estás invitado a ser parte de nuestra historia
+          </p>
 
           <h1>
             Mis XV años
@@ -150,14 +232,17 @@ export default function Home() {
           </h1>
 
           <p className="frase">
-            Toda gran historia comienza con un pequeño sueño...
+            Cada historia tiene un comienzo...
+            <br />
+            La nuestra comenzó hace quince años.
           </p>
 
           <button
-            type="button"
-            className="sobre"
-            onClick={() => setInvitacionAbierta(true)}
-            aria-label="Abrir invitación"
+          type="button"
+          className={`sobre ${abriendoSobre ? "sobre-abriendo" : ""}`}
+          onClick={abrirInvitacion}
+          aria-label="Abrir invitación"
+          disabled={abriendoSobre}
           >
             <span className="solapa" />
 
@@ -190,14 +275,10 @@ export default function Home() {
               Hace quince años comenzó esta historia
             </p>
 
-            <h2>
-              Sayumi
-              <span>Mis XV años</span>
-            </h2>
+            <h2>Sayumi</h2>
 
             <p>
-              Hoy queremos compartir contigo uno de sus capítulos más
-              especiales.
+              Hoy queremos invitarte a escribir un nuevo capítulo junto a ella.
             </p>
 
             <button
@@ -209,8 +290,9 @@ export default function Home() {
             </button>
           </section>
 
-          <section className="historia" id="historia">
+          <section className="historia revelar" id="historia">
             <p className="etiqueta">Nuestra historia</p>
+
             <h3>Quince años de recuerdos</h3>
 
             <div className="linea-tiempo">
@@ -239,7 +321,7 @@ export default function Home() {
             </div>
           </section>
 
-          <section id="informacion" className="informacion">
+          <section id="informacion" className="informacion revelar">
             <p className="etiqueta">Reserva la fecha</p>
 
             <h3>21 de agosto de 2026</h3>
@@ -253,23 +335,17 @@ export default function Home() {
               </div>
 
               <div className="unidad-tiempo">
-                <strong>
-                  {String(tiempo.horas).padStart(2, "0")}
-                </strong>
+                <strong>{String(tiempo.horas).padStart(2, "0")}</strong>
                 <span>Horas</span>
               </div>
 
               <div className="unidad-tiempo">
-                <strong>
-                  {String(tiempo.minutos).padStart(2, "0")}
-                </strong>
+                <strong>{String(tiempo.minutos).padStart(2, "0")}</strong>
                 <span>Minutos</span>
               </div>
 
               <div className="unidad-tiempo">
-                <strong>
-                  {String(tiempo.segundos).padStart(2, "0")}
-                </strong>
+                <strong>{String(tiempo.segundos).padStart(2, "0")}</strong>
                 <span>Segundos</span>
               </div>
             </div>
@@ -295,7 +371,7 @@ export default function Home() {
             </a>
           </section>
 
-          <section className="dresscode" id="dresscode">
+          <section className="dresscode revelar" id="dresscode">
             <p className="etiqueta">Código de vestimenta</p>
 
             <h3>Elegante</h3>
@@ -332,8 +408,8 @@ export default function Home() {
                 <h4>Tonos sugeridos</h4>
 
                 <p>
-                  Puedes elegir libremente dentro de esta gama para acompañar
-                  la estética de la celebración.
+                  Puedes elegir libremente dentro de esta gama para acompañar la
+                  estética de la celebración.
                 </p>
 
                 <div className="colores">
@@ -353,11 +429,104 @@ export default function Home() {
 
             <div className="nota-vestimenta">
               <strong>Importante:</strong>{" "}
+
               <p>
                 El azul acero del vestido principal está reservado para Sayumi.
                 Evita colores neón, rojo intenso y estampados excesivamente
                 llamativos.
               </p>
+            </div>
+          </section>
+          <section className="regalos revelar" id="regalos">
+  <p className="etiqueta">✦ Un detalle para Sayumi</p>
+
+  <h3>Tu presencia será el mejor regalo</h3>
+
+  <p className="texto-regalos">
+    Lo más importante para nosotros es compartir este momento contigo.
+  </p>
+
+  <p className="texto-regalos">
+    Si deseas tener un detalle adicional con Sayumi,
+    podrás hacerlo mediante una lluvia de sobres o, si lo prefieres,
+    utilizando el siguiente código QR.
+  </p>
+
+  <div className="tarjeta-regalo">
+
+    <div className="qr-imagen">
+    <Image
+  src="/images/qr-plin-sayumi.jpeg"
+  alt="Código QR de Plin de Sayumi Torres"
+  width={420}
+  height={560}
+  sizes="(max-width: 700px) 290px, 310px"
+/>
+    </div>
+
+    <h4>Plin</h4>
+
+    <p className="titular-regalo">
+      Titular: <strong>Sayumi Torres</strong>
+    </p>
+
+  </div>
+</section>
+          <section className="despedida revelar" id="confirmacion">
+            <p className="etiqueta">Celebremos juntos</p>
+
+            <h3>Gracias por formar parte de esta historia</h3>
+
+            <div className="texto-despedida">
+              <p>
+                Los recuerdos más valiosos no se construyen con grandes
+                escenarios.
+              </p>
+
+              <p>
+                Se construyen con las personas que deciden compartirlos.
+              </p>
+
+              <p>
+                Gracias por acompañar a Sayumi en uno de los capítulos más
+                importantes de su vida.
+              </p>
+            </div>
+
+            <p className="frase-final">
+              Nos vemos donde los recuerdos comienzan.
+            </p>
+
+            <div className="acciones-despedida">
+              <a
+                className="boton-confirmar"
+                href="https://wa.me/51946353286?text=Hola%20Carol%2C%20confirmo%20mi%20asistencia%20a%20los%20XV%20de%20Sayumi."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Confirmar asistencia
+              </a>
+
+              <a
+                className="boton-maps boton-maps-secundario"
+                href="https://maps.app.goo.gl/PGog4FXHTR3T3Lms9"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Abrir Google Maps
+              </a>
+              <a
+  className="boton-maps-secundario"
+  href="/Sayumi-XV.ics"
+  download
+>
+  Agregar al calendario
+</a>
+            </div>
+
+            <div className="firma-despedida">
+              <span>Con cariño,</span>
+              <strong>Carol &amp; Sayumi</strong>
             </div>
           </section>
         </div>
