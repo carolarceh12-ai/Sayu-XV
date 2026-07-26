@@ -529,7 +529,7 @@ export default function Home() {
             <div className="acciones-despedida">
               <a
                 className="boton-confirmar"
-                href="https://wa.me/51946353286?text=Hola%20Carol%2C%20confirmo%20mi%20asistencia%20a%20los%20XV%20de%20Sayumi."
+                href="https://wa.me/51946353283?text=Hola%20Carol%2C%20confirmo%20mi%20asistencia%20a%20los%20XV%20de%20Sayumi."
                 target="_blank"
                 rel="noopener noreferrer"
               >
