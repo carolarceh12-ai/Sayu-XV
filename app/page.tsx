@@ -187,7 +187,7 @@ export default function Home() {
     <main className="pagina">
       <audio
   ref={audioRef}
-  src="/Musica/cancion.mp3"
+  src="/Musica/cancion.mpeg"
   loop
   preload="metadata"
 />
