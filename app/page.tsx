@@ -121,6 +121,22 @@ export default function Home() {
       setTiempo(calcularTiempoRestante());
     }, 1000);
   
+    const audio = audioRef.current;
+  
+    if (audio) {
+      audio.volume = 0.6;
+  
+      audio
+        .play()
+        .then(() => {
+          setMusicaActiva(true);
+        })
+        .catch(() => {
+          // El navegador bloqueó el autoplay.
+          // La música se iniciará cuando el invitado toque el sobre.
+        });
+    }
+  
     return () => window.clearInterval(intervalo);
   }, []);
   
@@ -166,11 +182,24 @@ export default function Home() {
       console.error("No se pudo reproducir la música:", error);
     }
   }
-  function abrirInvitacion() {
+  
+  async function abrirInvitacion() {
     if (abriendoSobre) return;
   
     setAbriendoSobre(true);
   
+    const audio = audioRef.current;
+  
+    if (audio && audio.paused) {
+      try {
+        audio.volume = 0.6;
+        await audio.play();
+        setMusicaActiva(true);
+      } catch (error) {
+        console.error("No se pudo iniciar la música:", error);
+      }
+    }
+
     window.setTimeout(() => {
       setInvitacionAbierta(true);
     }, 750);
